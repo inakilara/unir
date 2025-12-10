@@ -4,4 +4,4 @@ project(UNIR C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(UNIR
-        "Worskpace/prueba actividad 1 programacion.c")
+        "FUNPRO2025/Tema 7/pointers.c")
