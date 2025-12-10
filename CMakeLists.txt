@@ -4,4 +4,4 @@ project(UNIR C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(UNIR
-    Worskpace/Taller2-ii.c)
+        "Worskpace/prueba actividad 1 programacion.c")

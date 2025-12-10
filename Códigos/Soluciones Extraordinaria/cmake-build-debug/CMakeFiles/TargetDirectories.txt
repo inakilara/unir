@@ -1,0 +1,3 @@
+/home/ilara/UNIR/Soluciones/cmake-build-debug/CMakeFiles/Soluciones.dir
+/home/ilara/UNIR/Soluciones/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ilara/UNIR/Soluciones/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,9 @@
+# ninja log v6
+56	1974	7673197677788245	build.ninja	780198bab0c861c4
+2053	4733	7673179196236261	Tema_6.exe	a7a8b3b0b10c3de5
+36	2465	7657627668520394	CMakeFiles/Tema_6.dir/Ahorcado.c.obj	426ae5af229d48ad
+7	113	7657551575289658	CMakeFiles/Tema_6.dir/CuadernoTema6.c.obj	65537db0c3884883
+7	402	7673142543438809	CMakeFiles/Tema_6.dir/Solucion.c.obj	363eeb325d02213c
+46	2030	7673179176171193	CMakeFiles/Tema_6.dir/lista_de_invitados.c.obj	62057461c24657dd
+21	4832	7673197725477954	CMakeFiles/Tema_6.dir/Solucion.c.obj	363eeb325d02213c
+4839	7812	7673197773662985	Tema_6.exe	9dc9ad0acb2b5818

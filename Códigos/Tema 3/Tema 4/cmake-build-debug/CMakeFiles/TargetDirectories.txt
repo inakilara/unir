@@ -1,0 +1,4 @@
+C:/Users/Iñaki Lara/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Tema 4/cmake-build-debug/CMakeFiles/Tema_4.dir
+C:/Users/Iñaki Lara/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Tema 4/cmake-build-debug/CMakeFiles/debug_target.dir
+C:/Users/Iñaki Lara/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Tema 4/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Iñaki Lara/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Tema 4/cmake-build-debug/CMakeFiles/rebuild_cache.dir

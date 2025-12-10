@@ -1,0 +1,7 @@
+Investigar la correlación entre diferentes escalas de "lags"
+
+Crear series para varios lags, calcular correlacion entre series y mostrar gráfico par diferentes "lags" seleccionar el que mejor correlaciones
+
+
+y_mean_=[np.mean([y_[i-9],y_[i-8],y_[i-7],y_[i-6],y_[i-5],y_[i-4],y_[i-3],y_[i-2],y_[i-1],y_[i]]) for i in range(len(x_[9:]))]
+sigmay_=[np.sqrt(np.var([y_[i-9],y_[i-8],y_[i-7],y_[i-6],y_[i-5],y_[i-4],y_[i-3],y_[i-2],y_[i-1],y_[i]])) for i in range(len(x_[9:]))]

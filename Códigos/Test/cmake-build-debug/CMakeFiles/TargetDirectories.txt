@@ -1,0 +1,3 @@
+C:/Users/Ana/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Test/cmake-build-debug/CMakeFiles/Test.dir
+C:/Users/Ana/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Test/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ana/OneDrive - UNIR/Fundamentos de Programacion_2024/Códigos/Test/cmake-build-debug/CMakeFiles/rebuild_cache.dir

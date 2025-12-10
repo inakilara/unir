@@ -1,0 +1,8 @@
+# ninja log v6
+2493	4795	7714646009612804	Tema_9.exe	999a32f49c2f2bf7
+17	2958	7714624892315221	CMakeFiles/Tema_9.dir/Ejemplo_c.c.obj	623a0056314a0c71
+397	5642	7717913830240411	build.ninja	443296512caac336
+50	1416	7714609488171991	CMakeFiles/Tema_9.dir/Hello_World.c.obj	ecb8688be119a915
+26	2488	7714645984981961	CMakeFiles/Tema_9.dir/conversor.c.obj	eb8eab9f334cec67
+49	2808	7714615638368327	CMakeFiles/Tema_9.dir/Ejemplo.c.obj	a381b442d46b9439
+89	3353	7714622860447720	CMakeFiles/Tema_9.dir/Ejemplo_b.c.obj	b3b1fb4ff4a10b0
