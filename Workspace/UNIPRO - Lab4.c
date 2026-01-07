@@ -118,7 +118,7 @@ void eliminarRegistro(char[N][100],int[N]);
 void guardarRegistros(char[N][100],int[N]);
 
 int main() {
-    char nombres[N][100],*path="../Worskpace/database.csv";
+    char nombres[N][100],*path="../Workspace/database.csv";
     int ids[N];
     if (leerRegistros(path,nombres,ids)==-1) {
         return -1;

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main(){
-  FILE *fichero = fopen("../Worskpace/Lore_ipsum.txt","r");
+  FILE *fichero = fopen("../Workspace/Lore_ipsum.txt","r");
   if (fichero==NULL){
     printf("Error abriendo el archivo");
     return -1;

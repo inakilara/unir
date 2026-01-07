@@ -25,7 +25,7 @@ int main() {
     char key=' ';
     char names[n][20];
     int id[n];
-    FILE *dataBase =fopen("../database.csv","r"); //CLion ejecuta desde dentro de cmake-build-debug, tenemos que decirle que busque los archivos en la carpeta principal
+    FILE *dataBase =fopen("../Workspace/database.csv","r"); //CLion ejecuta desde dentro de cmake-build-debug, tenemos que decirle que busque los archivos en la carpeta principal
     if(dataBase!= NULL) { //Comprueba que el archivo existe antes de intentar usarlo.
         readRegister(dataBase,names,id);
     } else {printf("%s","No ha sido posible leer el fichero.");}
