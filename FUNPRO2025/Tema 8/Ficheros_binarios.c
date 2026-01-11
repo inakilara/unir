@@ -17,7 +17,7 @@ typedef struct {
 void readDatabase(FILE *dataBase);
 void readRegister(FILE *dataBase);
 void addRegister(FILE *dataBase);
-void eraseRegister(FILE *dataBase);
+void eraseRegister(FILE **dataBase);
 // Utilidades
 char* leerCadena();
 int leerEntero(int*);  //El resultado indica si ha error de lectura o no
@@ -26,7 +26,7 @@ int longitudFichero(FILE *dataBase);
 int main() {
     //Función principal
     int key=-1;
-    FILE *dataBase =fopen("../databaseBinary.txt","rb"); //CLion ejecuta desde dentro de cmake-build-debug, tenemos que decirle que busque los archivos en la carpeta principal
+    FILE *dataBase =fopen("../Workspace/databaseBinary.txt","rb+"); //CLion ejecuta desde dentro de cmake-build-debug, tenemos que decirle que busque los archivos en la carpeta principal
     if(dataBase!= NULL) { //Comprueba que el archivo existe antes de intentar usarlo.
     } else {printf("%s","No ha sido posible leer el fichero.");return -1;}
     while (key!=0) { //Selector de operaciones
@@ -35,13 +35,14 @@ int main() {
         printf("Presione 3 para borrar un registro.\n");
         printf("Presione 4 para crear un registro.\n");
         printf("Presione 0 para terminar el programa.\n");
+        fflush(stdout);
         scanf(" %d%*[^\n]%*c",&key);
         switch(key) {
             case 1: readDatabase(dataBase);
             break;
             case 2:readRegister(dataBase);
             break;
-            case 3:eraseRegister(dataBase);
+            case 3:eraseRegister(&dataBase);
             break;
             case 4: addRegister(dataBase);
             break;
@@ -64,6 +65,7 @@ void readDatabase(FILE *dataBase){
     for(int i=0;i<len;i++) {
         if((lista+i)->id>0){printf("%4d\t\t%s\n",(lista+i)->id, (lista+i)->nombre);}
     }
+    fflush(stdout);
     rewind(dataBase);
     free(lista);
 }
@@ -72,6 +74,7 @@ void readRegister(FILE *dataBase){
     Templeado empleado;
     int error=0,i;
     printf("Que posicion del registro quieres leer: ?");
+    fflush(stdout);
     do {
         error=leerEntero(&i);
         if(error!=1){printf("Valor introducido invalido.");}
@@ -82,6 +85,7 @@ void readRegister(FILE *dataBase){
     printf("  id\t\tnombre\n");
     printf("------------------\n");
     printf("%4d\t\t%s\n",empleado.id, empleado.nombre);
+    fflush(stdout);
     rewind(dataBase);
 }
 
@@ -91,34 +95,36 @@ void addRegister(FILE *dataBase) {
     int n=fread(lista,sizeof(Templeado),len,dataBase);
     rewind(dataBase);
     if(n!=len){printf("Ha habido un error al leer el fichero\n");}
-    fclose(dataBase);
     Templeado *ptr=(Templeado*)malloc((len+1)*sizeof(Templeado));
     for(int i=0;i<len;i++) {
         *(ptr+i)=lista[i];
     }
     printf("Introduce la id del nuevo registro:");
+    fflush(stdout);
     leerEntero(&((ptr+len)->id));
     printf("Introduce el nombre\n");
-    strcpy((ptr+len)->nombre, leerCadena());
-    FILE *bFile=fopen("../databaseBinary.txt","wb");
-    if (bFile!=NULL) {
-        if(fwrite(ptr,sizeof(Templeado),len+1,bFile)<len+1) {
+    fflush(stdout);
+    {
+        char *miCadena = leerCadena();
+        strcpy((ptr+len)->nombre, miCadena);
+        free(miCadena);
+    }
+    if (dataBase!=NULL) {
+        if(fwrite(ptr,sizeof(Templeado),len+1,dataBase)<len+1) {
             printf("Ha habido un error en el proceso de escritura");
         }
     }
     else{printf("No se ha podido abrir el archivo.");}
     free(ptr);
     free(lista);
-    fclose(bFile);
-    dataBase =fopen("../databaseBinary.txt","rb");
 }
 
-void eraseRegister(FILE *dataBase) {
-    const int len = longitudFichero(dataBase);
+void eraseRegister(FILE **dataBase) {
+    const int len = longitudFichero(*dataBase);
     Templeado *lista=(Templeado*)malloc((len)*sizeof(Templeado));
-    int id,i_del=-1,n=fread(lista,sizeof(Templeado),len,dataBase);
+    int id,i_del=-1,n=fread(lista,sizeof(Templeado),len,*dataBase);
     if(n!=len){printf("Ha habido un error al leer el fichero\n");}
-    fclose(dataBase);
+    fclose(*dataBase);
     Templeado *ptr=(Templeado*)malloc((len-1)*sizeof(Templeado));
     printf("Introduce la id del registro a borrar:");
     leerEntero(&id);
@@ -142,23 +148,35 @@ void eraseRegister(FILE *dataBase) {
     free(ptr);
     free(lista);
     fclose(bFile);
-    dataBase =fopen("../databaseBinary.txt","rb");
+    *dataBase =fopen("../databaseBinary.txt","rb+");
 }
 
 
 
 char *leerCadena() {
-    char *cadena=(char *)calloc(1,sizeof(char)),c;
-    int len=0;
+    char c;
+    char *cadena = NULL;
+    int len=1;
     do{
-        len++;
         c=getchar();
         if(c!='\n') {
-            cadena=(char *)realloc(cadena,len*sizeof(char));
-            *(cadena+len-1)=c;
+            len++;
+            char *ptr =(char *)realloc(cadena,len*sizeof(char));
+            if (ptr==NULL) {
+                free(cadena);
+                free(ptr);
+                return NULL;
+            }
+            else {
+                cadena =ptr;
+            }
+            *(cadena+len-2)=c;
         }
-        else if(len==1){c=' ';len--;continue;}//Descartar un salto de linea si es lo primero que se encuentra
+        else if(len==1){c=' ';continue;}//Descartar un salto de linea si es lo primero que se encuentra
     }while(c!='\n');
+    if (cadena!=NULL) {
+        *(cadena+len-1)='\0';
+    }
     return cadena;
 }
 
