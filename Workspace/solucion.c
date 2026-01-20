@@ -104,7 +104,7 @@ char *leerCadena() {
     char *cadena = NULL;
     int len=1;
     do{
-        c=getchar();
+        c=(char)getchar();
         if(c!='\n') {
             len++;
             char *ptr =(char *)realloc(cadena,len*sizeof(char));
@@ -182,8 +182,12 @@ void leerMatriz(double M[2][2]) {
     for(int i=0;i<2;i++) {
             printf("Introduce los elementos de la fila %d separados por espacios:",i+1);
             while(leer2Reales(&M[i][0],&M[i][1])!=1){printf("Valor invalido\n");printf("Introduce los elementos de la fila %d separados por espacios:",i+1);}
+
     }
 }
+
+
+
 void mostrarMatriz(double M[2][2]) {
     for(int i=0;i<2;i++) {
         for(int j=0;j<2;j++) {
@@ -265,7 +269,7 @@ int ejercicio3(){
         printf("Introduzca la siguiente palabra:");
         scanf("%20[^\n]%*c",palabras[i]);
         for (int j=0;j<strlen(palabras[i]);j++) {
-            palabrasMinusculas[i][j]=tolower(palabras[i][j]);
+            palabrasMinusculas[i][j]=(char)tolower(palabras[i][j]);
         }
     }
     for (int i=0;i<5;i++) { //Llena el vector índices con los índices ordenados (por selección) de la lista de palabras
@@ -273,8 +277,8 @@ int ejercicio3(){
             if(!(j==indices[0]||j==indices[1]||j==indices[2]||j==indices[3]||j==indices[4])){auxI=j;break;}  //Busco el siguiente índice sin colocar y lo guardo en auxI para comparar esa palabra
         }
         for (int j=0;j<5;j++) {
-            if(j==indices[0]||j==indices[1]||j==indices[2]||j==indices[3]||j==indices[4]){continue;} //No comparo las palabras correspondientes a indices ya ordenados
-            if(strcmp(palabrasMinusculas[j],palabrasMinusculas[auxI])<0) {  // Comparo la palabra de auxI con las demas que no estan colocadas
+            if(j==indices[0]||j==indices[1]||j==indices[2]||j==indices[3]||j==indices[4]){continue;} //No comparo las palabras correspondientes a índices ya ordenados
+            if(strcmp(palabrasMinusculas[j],palabrasMinusculas[auxI])<0) {  // Comparo la palabra de auxI con las demás que no están colocadas
              auxI=j;  // si es menor lo guardo
             }
         }
@@ -355,7 +359,7 @@ empleado leerEmplado() {
 puesto leerPuesto() {
     puesto resultado;
     printf("Introduzca el nombre del puesto:");
-    scanf("%20[^\n]%*c",resultado.nombre);;
+    scanf("%20[^\n]%*c",resultado.nombre);
     printf("Introduzca el nombre de los estudios requeridos para el puesto:");
     scanf("%20[^\n]%*c",resultado.estudios);
     printf("Introduzca el sueldo asociado:");
