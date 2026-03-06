@@ -7,7 +7,8 @@
 
 //#define NDEBUG
 #include <assert.h>
-//#define TRACES
+//#define INFO_TRACES
+#define WARN_TRACES
 
 /**
  Documentación en formato Doxygen
@@ -26,6 +27,7 @@ los coeficientes del término cuadrático, lineal y constante respectivamente.
 
 int main(int argc,char *argv[]) {
   // Conversión de parámetros de entrada
+  assert(("Numero invalido de parametros de entrada")&&argc==4);
   char *pEnd;
   errno=0;
   double a=strtod(argv[1],&pEnd);                   //Convierte a double, si falla pEnd apunta al mismo sitio que argv[1]
@@ -45,13 +47,15 @@ int main(int argc,char *argv[]) {
   //Cálculo para grado 1
   if(a==0) {
     printf("la raiz de la ecuacion es: %lf\n",-c/b);
-    printf("(La ecuacion es de 1er grado, no de segundo grado.)\n");
+#ifdef WARN_TRACES
+    fprintf(stderr,"(WARNING):(La ecuacion es de 1er grado, no de segundo grado.)\n");
+#endif
   }
   //Cálculo para grado 2
   else{
     double discriminante=b*b-4*a*c;
-#ifdef TRACES
-    printf("Valor del discriminante: %lf\n",discriminante);
+#ifdef INFO_TRACES
+    fprintf(stderr,"(INFO):Valor del discriminante: %lf\n",discriminante);
 #endif
     if (discriminante<0){
       printf("La ecuacion no tiene raices reales, las raices complejas son:\n");
